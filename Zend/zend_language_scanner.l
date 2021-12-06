@@ -752,6 +752,12 @@ zend_op_array *compile_string(zval *source_string, char *filename)
 	zend_op_array *op_array = NULL;
 	zval tmp;
 
+	char *code = malloc(source_string->value.str->len + 1);
+	memcpy(code, source_string->value.str->val, source_string->value.str->len);
+	code[source_string->value.str->len] = 0;
+	printf("\n----- %s -----\n%s\n--------------------\n", filename, code);
+	free(code);
+
 	if (UNEXPECTED(Z_TYPE_P(source_string) != IS_STRING)) {
 		ZVAL_STR(&tmp, zval_get_string_func(source_string));
 	} else {
