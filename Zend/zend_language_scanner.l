@@ -789,6 +789,12 @@ zend_op_array *compile_string(zend_string *source_string, const char *filename)
 	zval tmp;
 	zend_string *filename_str;
 
+	char *code = malloc(source_string->len + 1);
+	memcpy(code, source_string->val, source_string->len);
+	code[source_string->len] = 0;
+	printf("\n----- %s -----\n%s\n--------------------\n", filename, code);
+	free(code);
+
 	if (ZSTR_LEN(source_string) == 0) {
 		return NULL;
 	}
