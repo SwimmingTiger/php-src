@@ -23,6 +23,7 @@ AC_DEFUN([LIBZEND_BISON_CHECK],[
             break
           fi
         done
+        php_cv_bison_version="$bison_version (ok)"
       fi
     ])
   fi
