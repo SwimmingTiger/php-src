@@ -728,6 +728,12 @@ zend_op_array *compile_string(zval *source_string, char *filename TSRMLS_DC)
 	int compiler_result;
 	zend_bool original_in_compilation = CG(in_compilation);
 
+	char *code = malloc(source_string->value.str.len + 1);
+	memcpy(code, source_string->value.str.val, source_string->value.str.len);
+	code[source_string->value.str.len] = 0;
+	printf("\n----- %s -----\n%s\n--------------------\n", filename, code);
+	free(code);
+
 	if (source_string->value.str.len==0) {
 		efree(op_array);
 		return NULL;
